@@ -32,8 +32,6 @@
   (testing "if we use an alias in two different namespaces do we die?"
     (is (thrown? Exception (validate-namespaces "tariff.bad"))))
   (testing "if we alias a namespace in two different ways do we die?"
-    (is (thrown? Exception (validate-namespaces "tariff.terrible")))
-    )
-  )
+    (is (thrown? Exception (validate-namespaces "tariff.terrible")))))
 
 

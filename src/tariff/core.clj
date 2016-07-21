@@ -56,11 +56,14 @@
 
 
 
-(defn validate-namespaces [ns-prefix]
+(defn validate-namespaces
+  "Perform namespace validation. Will throw an exception if a namespace is aliased in two different ways
+   or if two different namespaces share an alias. All ns-forms are checked that match the ns-prefix, loading
+   is done via the Java classpath."
+  [ns-prefix]
   (let [req-map   (build-require-map-from-ns ns-prefix)
         ns->alias (find-different-ns-by-alias req-map)
-        alias->ns (find-different-aliases-by-ns req-map)
-        ]
+        alias->ns (find-different-aliases-by-ns req-map)]
     (do
       (doseq [[alias ns-list] alias->ns]
         (when (and (not (nil? alias))
@@ -70,7 +73,4 @@
       (doseq [[ns alias-list] ns->alias]
         (let [alias-set (set (remove nil? alias-list))]
           (when (< 1 (count alias-set))
-
-            (throw (Exception. (str ns " is aliased to " (string/join ", " alias-set)
-                                    "\n"
-                                    (format "git grep %s | grep '\\:as'" ns))))))))))
+            (throw (Exception. (str ns " is aliased to " (string/join ", " alias-set))))))))))
