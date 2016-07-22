@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/brian-dawn/tariff.svg?branch=master)](https://travis-ci.org/brian-dawn/tariff)
+[![Build Status](https://travis-ci.org/kidblog/tariff.svg?branch=master)](https://travis-ci.org/kidblog/tariff)
 
 # tariff
 
